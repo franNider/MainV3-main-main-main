@@ -1,0 +1,44 @@
+<h1>Cargar perro</h1>
+<%= form_with(model: @dog) do |form| %>
+    <div class="alert alert.prymary">
+ <% @dog.errors.full_messages.each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+  <% end %>
+</div>
+    <div>
+        <%= form.label :nombre %>
+        <%= form.text_field :nombre %>
+    </div>
+
+    <div>
+        <%= form.label :raza %>
+        <%= form.text_field :raza %>
+    </div>
+
+    <div>
+        <%= form.label :sexo %>
+         <%= form.select :sexo, ["Macho", "Hembra"]%>
+    </div>
+
+    <div>
+        <%= form.label :color %>
+        <%= form.text_field :color %>
+    </div>
+
+    <div>
+        <%= form.label :edad %>
+        <%= form.number_field :edad %>
+    </div>
+
+    <div>
+        <%= form.label :peso %>
+        <%= form.number_field :peso , step: 0.01 %>
+    </div>
+
+  <div>
+    <%= form.submit "Cargar", class: "btn btn-info" %>
+    <%= link_to "No agregar perro", '/profiles/index', class: "btn btn-danger" %>
+  </div>
+<% end %>

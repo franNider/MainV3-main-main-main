@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Chequeos</h1>
+
+<div id="chequeos">
+  <% @chequeos.each do |chequeo| %>
+    <%= render chequeo %>
+    <p>
+      <%= link_to "Show this chequeo", chequeo %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New chequeo", new_chequeo_path %>

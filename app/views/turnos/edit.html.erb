@@ -1,0 +1,24 @@
+<%= form_with( model: @turno ) do |form| %>
+ <div class="alert alert.prymary">
+ <% @turno.errors.full_messages.each do |error| %>
+    <li>
+      <%= error %>
+    </li>
+  <% end %>
+</div>
+
+    <div>
+        <%= form.label :motivo %>
+        <%= form.text_field :motivo %>
+    </div>
+
+    <div>
+        <%= form.label :fecha %>
+        <%= form.date_select :fecha, start_year: 2023, end_year: 2030 %>
+    </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+  
+<% end %>

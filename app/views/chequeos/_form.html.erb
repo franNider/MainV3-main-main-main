@@ -1,0 +1,31 @@
+<%= form_with(model: chequeo) do |form| %>
+  <% if chequeo.errors.any? %>
+    <div style="color: red">
+     
+      <ul>
+        <% chequeo.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :dog_id, "Perro" %>
+    <%= form.collection_select(:dog_id, current_user.dog.all, :id, :nombre, prompt: "Selecciona un perro") %>
+  </div>
+
+  <div>
+    <%= form.label :descripcion, style: "display: block" %>
+    <%= form.text_field :descripcion %>
+  </div>
+
+  <div>
+    <%= form.label :fecha, style: "display: block" %>
+    <%= form.date_field :fecha %>
+  </div>
+
+  <div>
+    <%= form.submit "cargar chequeo" %>
+  </div>
+<% end %>

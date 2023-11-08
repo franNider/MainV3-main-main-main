@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @chequeo %>
+
+<div>
+  <%= link_to "Edit this chequeo", edit_chequeo_path(@chequeo) %> |
+  <%= link_to "Back to chequeos", chequeos_path %>
+
+  <%= button_to "Destroy this chequeo", @chequeo, method: :delete %>
+</div>

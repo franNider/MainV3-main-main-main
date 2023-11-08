@@ -1,0 +1,72 @@
+<h1>Mi Perfil</h1>
+<form>
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label for="nombre">Nombre</label>
+      <input type="text" class="form-control" id="nombre" placeholder="Nombre Perfil" value="<%=@profile.nombre%>" readonly>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="apellido">Apellido</label>
+      <input type="text" class="form-control" id="apellido" placeholder="Apellido Perfil" value="<%=@profile.apellido%>" readonly>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputEmail4">Email</label>
+      <input type="email" class="form-control" id="inputEmail4" placeholder="Email" value="<%=@profile.email%>" readonly>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="dni">DNI</label>
+      <input type="integer" class="form-control" id="dni" placeholder="Dni Perfil" value="<%=@profile.dni%>" readonly>
+    </div>
+  </div>
+  <%=link_to "Editar Perfil", edit_profile_path(@profile), {class: "btn btn-info"}%>
+</form>
+
+
+
+
+<br>
+<br>
+<br>
+<%= label_tag 'perros_label', 'Perros:', style: 'font-size: 30px;' %>
+<div>  
+  <%= link_to new_dog_path, { remote: true, class: "btn btn-info" }  do %>
+    <span class="fas fa-plus-square" ></span>
+  <% end %>
+    <%= link_to "Cargar Vacunas", new_vacuna_path, html_options = {class: "btn btn-info btn-xs", remote: true} %>
+    <%= link_to "Cargar Chequeos", new_chequeo_path, html_options = {class: "btn btn-info btn-xs", remote: true} %>
+</div>
+<br>
+<div class="card shadow mb-4">
+<div class="card-body">
+    <div class="table-responsive">
+    <table class="table table-bordered" id="tablaPerros" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Sexo</th>
+            <th>Raza</th>
+            <th>Color</th>
+            <th>Edad</th>
+            <th>Peso(Kg)</th>
+        </tr>
+        </thead>
+        <tbody>
+            <% current_user.dog.all.each do |d| %>
+            <tr id="perro_<%= d.id %>" >
+                <td><%= d.nombre %></td>
+                <td><%= d.sexo %></td>
+                <td><%= d.raza %></td>
+                <td><%= d.color %></td>
+                <td><%= d.edad %></td>
+                <td><%= d.peso %></td>
+                <td>
+                  <%= link_to "ver ficha medica", verFichaMedica_dog_path(d), html_options = {class: "btn btn-info btn-xs", remote: true} %>
+                  
+                </td>
+              </tr>
+            <% end %>
+        </tbody>
+    </table>
+    </div>
+  </div>
+</div>

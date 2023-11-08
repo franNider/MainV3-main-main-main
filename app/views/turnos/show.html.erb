@@ -1,0 +1,45 @@
+<% if @turnos.empty? %>
+    <label>No hay turnos por el momento</label>
+<%else%>
+  <% if current_user.rol == "Administrador" %>
+  <table class="table">
+    <thead>
+        <tr>
+        <th>Motivo</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </thead>
+    <tbody>
+       <% @turnos.each do |turno| %>
+       <tr>
+        <td><%= turno.motivo %></td>
+        <td><%= turno.estado %></td>
+        <td><%= turno.fecha %></td>
+        <td><%= button_to 'Cancelar Turno', turno, method: :delete, class: 'btn btn-primary' %><%= button_to 'Aceptar Turno', turno, method: :delete, class: 'btn btn-primary' %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%else%>
+  <table class="table">
+      <thead>
+          <tr>
+         <th>Motivo</th>
+      <th>Estado</th>
+      <th>Fecha</th>
+      <th>Acciones</th>
+      </thead>
+    <tbody>
+     <% @turnos.each do |turno| %>
+     <tr>
+      <td><%= turno.motivo %></td>
+      <td><%= turno.estado %></td>
+      <td><%= turno.fecha %></td>
+      <td><%= button_to 'Cancelar Turno', turno, method: :delete, class: 'btn btn-primary' %><%= link_to 'Editar Turno', edit_turno_path(turno)  ,class: 'btn btn-primary' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+    </table>
+    <%end%>
+    <%end%>
